@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run -e CI=true hootielander/docker-react
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "dockerapp"
+  env: "create-application-app"
+  bucket-name: "elasticbeanstalk-us-east-2-425254848235"
+  bucket-path: "dockerapp"
+  on:
+    branch: main
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key: "$AWS_SECRET_KEY"
